@@ -2,6 +2,13 @@
 - name: Gather instance facts
   ansible.builtin.setup:
 
+- name: Set IPv4 address to ansible_default_ipv4
+  ansible.builtin.set_fact:
+    etcd_ipv4_address: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+  when: etcd_use_default_ipv4
+  tags:
+    - etcd
+
 - name: Create etcd config directory
   ansible.builtin.file:
     path: "{{ etcd_conf_dir }}"

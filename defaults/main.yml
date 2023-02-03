@@ -16,8 +16,8 @@ etcd_client_port: "2379"
 etcd_peer_port: "2380"
 # Interface to bind etcd ports to
 etcd_interface: "tap0"
-# IPv4 address to bind etcd ports to
-etcd_ipv4_address: "{{ hostvars[host]['ansible_' + etcd_interface].ipv4.address }}"
+# Use built-in variable ansible_default_ipv4 to bind etcd ports to
+etcd_use_default_ipv4: false
 # Directory for etcd configuration
 etcd_conf_dir: "/etc/etcd"
 # Permissions for directory for etcd configuration
