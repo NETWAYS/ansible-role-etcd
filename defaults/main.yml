@@ -62,10 +62,10 @@ etcd_settings:
   "peer-cert-file": "{{ etcd_conf_dir }}/cert-etcd-peer.pem"
   "peer-key-file": "{{ etcd_conf_dir }}/cert-etcd-peer-key.pem"
   "peer-trusted-ca-file": "{{ etcd_conf_dir }}/ca-etcd.pem"
-  "advertise-client-urls": "{{ 'https://' + hostvars[inventory_hostname]['ansible_' + etcd_interface].ipv4.address + ':' + etcd_client_port }}"
-  "initial-advertise-peer-urls": "{{ 'https://' + hostvars[inventory_hostname]['ansible_' + etcd_interface].ipv4.address + ':' + etcd_peer_port }}"
-  "listen-peer-urls": "{{ 'https://' + hostvars[inventory_hostname]['ansible_' + etcd_interface].ipv4.address + ':' + etcd_peer_port }}"
-  "listen-client-urls": "{{ 'https://' + hostvars[inventory_hostname]['ansible_' + etcd_interface].ipv4.address + ':' + etcd_client_port + ',https://127.0.0.1:' + etcd_client_port }}"
+  "advertise-client-urls": "{{ 'https://' + etcd_ipv4_address + ':' + etcd_client_port }}"
+  "initial-advertise-peer-urls": "{{ 'https://' + etcd_ipv4_address + ':' + etcd_peer_port }}"
+  "listen-peer-urls": "{{ 'https://' + etcd_ipv4_address + ':' + etcd_peer_port }}"
+  "listen-client-urls": "{{ 'https://' + etcd_ipv4_address + ':' + etcd_client_port + ',https://127.0.0.1:' + etcd_client_port }}"
   "peer-client-cert-auth": "true"            # Enable peer client cert authentication
   "client-cert-auth": "true"                 # Enable client cert authentication
   "initial-cluster-token": "etcd-cluster-0"  # Initial cluster token for the etcd cluster during bootstrap.
