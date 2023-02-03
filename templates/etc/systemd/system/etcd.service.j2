@@ -7,7 +7,7 @@
 {%- endfor -%}
 {%- else -%}
 {%- for host in groups[etcd_ansible_group] -%}
-{{hostvars[host]['ansible_hostname']}}=https://{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}:{{etcd_peer_port}}{% if not loop.last %},{% endif %}
+{{hostvars[host]['ansible_hostname']}}=https://{{hostvars[host]['ansible_default_ipv4']['address']}}:{{etcd_peer_port}}{% if not loop.last %},{% endif %}
 {%- endfor -%}
 {%- endif -%}
 {%- endmacro -%}
