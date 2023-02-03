@@ -5,14 +5,14 @@
 - name: Set etcd_ipv4_address to ansible_default_ipv4
   ansible.builtin.set_fact:
     etcd_ipv4_address: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
-  when: etcd_use_default_ipv4
+  when: etcd_use_default_ipv4 | bool
   tags:
     - etcd
 
 - name: Set etcd_ipv4_address to specified interface IPv4 address
   ansible.builtin.set_fact:
     etcd_ipv4_address: "{{ hostvars[inventory_hostname]['ansible_' + etcd_interface].ipv4.address  }}"
-  when: etcd_use_default_ipv4
+  when: not etcd_use_default_ipv4 | bool
   tags:
     - etcd
 
